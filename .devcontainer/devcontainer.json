@@ -1,0 +1,18 @@
+{
+  "build": {
+    "dockerfile": "Dockerfile",
+    "context": ".."
+  },
+  "remoteEnv": {
+    // set variable to the local user
+    // Needed to upload to the db as the correct user
+    "OS_USER": "${localEnv:USER}"
+  },
+  "features": {
+    "ghcr.io/prulloac/devcontainer-features/pre-commit:1": {},
+  },
+  "remoteUser": "devuser",
+
+  // install pre-commit Git hooks automatically after build
+  "postCreateCommand": "pre-commit install",
+}
